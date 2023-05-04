@@ -3,10 +3,8 @@
   $: ({ products } = data.products);
 </script>
 
-<header>
-  <h1 class="text-3xl font-bold">Products</h1>
+<h1 class="text-3xl font-bold">Products</h1>
 
-  {#each products as product}
-    <p class="text-lg font-base">{product.title}</p>
-  {/each}
-</header>
+{#each products as product}
+  <p class="text-lg font-base">{product.title}</p>
+{/each}
