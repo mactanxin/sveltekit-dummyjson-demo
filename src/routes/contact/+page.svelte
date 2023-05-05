@@ -1,4 +1,4 @@
-<h1>Contact</h1>
+<h1 class="block text-center text-3xl my-8">Fake Contact Form</h1>
 
 <form method="POST" action="?/create" class="mx-auto max-w-xl">
   <div class="mb-6">
