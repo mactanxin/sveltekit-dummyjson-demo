@@ -74,16 +74,16 @@
   <table class="table w-full">
     <thead>
       <tr>
-        <th />
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      {#each contacts as contact}
+      {#each contacts as contact, index}
         <tr>
-          <th>{contact.id}</th>
+          <th>{index + 1}</th>
           <td>{contact.name}</td>
           <td>{contact.email}</td>
           <td>
