@@ -1,5 +1,19 @@
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
+
+let contacts = [
+  {
+    id: '64c257a4-c09d-4029-9693-0e21133084d3',
+    name: 'Xin Doe',
+    email: 'xintan@me.com'
+  },
+  {
+    id: 'beaf6b0c-67ae-4d29-9ef8-e49aa1487b16',
+    name: 'Jane Doe',
+    email: 'jane@me.com'
+  }
+]
+
 export const actions: Actions = {
   // named action matching form post action attribute
   create: async ({ request }) => {
@@ -37,22 +51,12 @@ export const actions: Actions = {
     const formData = await request.formData();
     const id = formData.get('id');
 
-    console.log('id is: ', id)
+    // now you have the id
+    // should do validation b4 next move right?
+    contacts = contacts.filter(contact => contact.id !== id)
   }
 }
 
-const contacts = [
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'xintan@me.com'
-  },
-  {
-    id: 2,
-    name: 'Jane Doe',
-    email: 'jane@me.com'
-  }
-]
 
 export const load = () => {
   return {
