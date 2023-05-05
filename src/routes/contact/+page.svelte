@@ -63,13 +63,8 @@
   >
 </form>
 
-<h2 class="text-center text-2xl mt-16 mb-8">Contacts</h2>
-<div class="flex justify-center items-center flex-col">
-  {#each contacts as contact}
-    <p class="text-lg text-blue-600">{contact.email}</p>
-  {/each}
-</div>
-
+<h2 class="text-center text-2xl mt-16 mb-8">Contacts Table</h2>
+<!-- code copied from daisyui table -->
 <div class="px-10 flex justify-center items-center">
   <table class="table w-full">
     <thead>
