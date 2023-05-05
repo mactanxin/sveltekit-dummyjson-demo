@@ -1,3 +1,12 @@
+<script lang="ts">
+  export let data;
+  export let form;
+
+  console.log("form: ", form);
+
+  $: ({ contacts } = data);
+</script>
+
 <h1 class="block text-center text-3xl my-8">Fake Contact Form</h1>
 
 <form method="POST" action="?/create" class="mx-auto max-w-xl">
@@ -11,6 +20,7 @@
       type="email"
       id="email"
       name="email"
+      value={form?.email ?? ""}
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       placeholder="name@flowbite.com"
       required
@@ -18,14 +28,15 @@
   </div>
   <div class="mb-6">
     <label
-      for="password"
+      for="name"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >Your password</label
+      >Your name</label
     >
     <input
-      type="password"
-      id="password"
-      name="password"
+      type="name"
+      id="name"
+      name="name"
+      value={form?.name ?? ""}
       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       required
     />
@@ -51,3 +62,42 @@
     >Submit</button
   >
 </form>
+
+<h2 class="text-center text-2xl mt-16 mb-8">Contacts</h2>
+<div class="flex justify-center items-center flex-col">
+  {#each contacts as contact}
+    <p class="text-lg text-blue-600">{contact.email}</p>
+  {/each}
+</div>
+
+<div class="px-10 flex justify-center items-center">
+  <table class="table w-full">
+    <thead>
+      <tr>
+        <th />
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each contacts as contact}
+        <tr>
+          <th>{contact.id}</th>
+          <td>{contact.name}</td>
+          <td>{contact.email}</td>
+          <td>
+            <form method="POST" action="?/delete">
+              <input type="hidden" hidden name="id" value={contact.id} />
+              <button
+                type="submit"
+                class="text-white btn btn-error badge-error badge badge-error"
+                >Delete</button
+              >
+            </form>
+          </td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+</div>
