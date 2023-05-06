@@ -54,6 +54,11 @@ export const actions: Actions = {
     // now you have the id
     // should do validation b4 next move right?
     contacts = contacts.filter(contact => contact.id !== id)
+
+    // don't forget to return something
+    return {
+      success: true
+    }
   }
 }
 
