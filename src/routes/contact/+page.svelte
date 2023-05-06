@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { enhance, applyAction } from "$app/forms";
+  import Alert from "$lib/components/Alert.svelte";
   export let data;
   export let form;
 
@@ -9,7 +11,34 @@
 
 <h1 class="block text-center text-3xl my-8">Fake Contact Form</h1>
 
-<form method="POST" action="?/create" class="mx-auto max-w-xl">
+<form
+  method="POST"
+  action="?/create"
+  class="mx-auto max-w-xl"
+  use:enhance={({ form, data, action }) => {
+    // code here runs before submit to server
+    // look around form:  the actual form element
+    // data: form data (which contains the values of the form)
+    // action: the action (URL object) of the form
+    console.log("form: ", form);
+    console.log("data: ", data);
+    console.log("action: ", action);
+
+    return async ({ result, update }) => {
+      // code here runs after submit to server
+      console.log("result :", result);
+
+      if (result.type === "success") {
+        form.reset();
+      }
+
+      if (result.type === "failure") {
+        await applyAction(result);
+      }
+      update();
+    };
+  }}
+>
   <div class="mb-6">
     <label
       for="email"
@@ -61,6 +90,9 @@
     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     >Submit</button
   >
+  {#if form?.error}
+    <Alert message={form?.message} />
+  {/if}
 </form>
 
 <h2 class="text-center text-2xl mt-16 mb-8">Contacts Table</h2>
@@ -82,7 +114,7 @@
           <td>{contact.name}</td>
           <td>{contact.email}</td>
           <td>
-            <form method="POST" action="?/delete">
+            <form method="POST" action="?/delete" use:enhance>
               <input type="hidden" hidden name="id" value={contact.id} />
               <button
                 type="submit"
