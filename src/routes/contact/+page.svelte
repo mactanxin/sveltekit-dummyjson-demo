@@ -118,7 +118,7 @@
               <input type="hidden" hidden name="id" value={contact.id} />
               <button
                 type="submit"
-                class="text-white btn btn-error badge-error badge badge-error"
+                class="text-white btn btn-error badge-error badge"
                 >Delete</button
               >
             </form>
