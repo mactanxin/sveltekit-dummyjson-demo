@@ -6,7 +6,7 @@
 
 - [x] Simple layout
 - [x] laoding data from server
-- [ ] pagination on server side & client side
+- [x] pagination on server side & client side
 - [x] basic form and progresive enhancement
 - [ ] grouped layout
 - [ ] authentication
