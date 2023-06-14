@@ -9,7 +9,7 @@
 - [x] pagination on server side & client side
 - [x] basic form and progresive enhancement
 - [x] grouped layout
-- [ ] authentication
+- [x] authentication
 
 # Deploy to Vercel
 
