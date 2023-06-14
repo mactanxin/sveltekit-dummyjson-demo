@@ -8,7 +8,7 @@
 - [x] laoding data from server
 - [x] pagination on server side & client side
 - [x] basic form and progresive enhancement
-- [ ] grouped layout
+- [x] grouped layout
 - [ ] authentication
 
 # Deploy to Vercel
